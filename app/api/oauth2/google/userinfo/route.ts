@@ -9,6 +9,7 @@ export const GET = async (req: NextRequest) => {
     tokenEndpoint: 'https://oauth2.googleapis.com/token',
     clientId: process.env.NEXT_GOOGLE_CLIENT_ID || '',
     clientSecret: process.env.NEXT_GOOGLE_CLIENT_SECRET || '',
+    access_token: req.headers.get('Authorization')?.substring(7),
   };
   return await userinfo(idp, req);
 };

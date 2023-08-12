@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Idp } from '../types/types';
 
 export default async (idp: Idp, req: NextRequest) => {
@@ -21,7 +21,9 @@ export default async (idp: Idp, req: NextRequest) => {
       jsonResponse = response.data;
     } catch (error) {
       status = 500;
-      if (typeof error === "string") {
+      if (error instanceof AxiosError) {
+        jsonResponse = { error: error.message };
+      } else if (typeof error === "string") {
         jsonResponse = { error };
       } else if (error instanceof Error) {
         jsonResponse = { error: error.message };

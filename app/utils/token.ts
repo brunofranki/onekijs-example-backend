@@ -43,7 +43,6 @@ export default async (idp: Idp, req: NextRequest) => {
       ],
     ];
   } catch (error) {
-    console.log("error", error);
     status = 500;
     if (error instanceof AxiosError) {
       jsonResponse = { error: error.message };
@@ -53,6 +52,6 @@ export default async (idp: Idp, req: NextRequest) => {
       jsonResponse = { error: error.message };
     }
   }
-  console.log("return response");
+  console.log("return response", jsonResponse);
   return NextResponse.json(jsonResponse, { status, headers });
 };
