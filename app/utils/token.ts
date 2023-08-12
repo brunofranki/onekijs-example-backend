@@ -9,9 +9,7 @@ export default async (idp: Idp, req: NextRequest) => {
   let jsonResponse = {};
   let headers: HeadersInit | undefined;
   const formData = await req.formData();
-  console.log(formData.get('grant_type'));
   try {
-    console.log('send HTTP request');
     const response = await axios({
       method: "post",
       url: idp.tokenEndpoint, //https://auth.oneki.net/oauth2/token
@@ -29,7 +27,6 @@ export default async (idp: Idp, req: NextRequest) => {
         password: idp.clientSecret,
       },
     });
-    console.log(response);
     status = response.status;
     jsonResponse = response.data;
     headers = [
@@ -52,6 +49,5 @@ export default async (idp: Idp, req: NextRequest) => {
       jsonResponse = { error: error.message };
     }
   }
-  console.log("return response", jsonResponse);
   return NextResponse.json(jsonResponse, { status, headers });
 };

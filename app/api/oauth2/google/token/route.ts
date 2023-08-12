@@ -1,6 +1,11 @@
 import type { NextRequest } from "next/server";
 import { Idp } from "../../../../types/types";
 import token from '../../../../utils/token';
+import cors from '../../../../utils/cors';
+
+export const OPTIONS = async (req: NextRequest) => {
+  return cors(req);
+}
 
 export const POST = async (req: NextRequest) => {
   const idp: Idp = {
