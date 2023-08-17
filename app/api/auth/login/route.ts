@@ -37,7 +37,7 @@ export const POST = async (req: NextRequest) => {
     headers = [
       [
         "Set-Cookie",
-        `onekijs-example-profile=${jsonResponseString}; path=/; HttpOnly; SameSite=Strict`,
+        `onekijs-example-profile=${jsonResponseString}; path=/; HttpOnly; ; SameSite=None; Secure`,
       ],
     ];
   } catch (error) {

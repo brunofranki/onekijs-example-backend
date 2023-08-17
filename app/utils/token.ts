@@ -32,11 +32,11 @@ export default async (idp: Idp, req: NextRequest) => {
     headers = [
       [
         "Set-Cookie",
-        `access_token=${response.data.access_token}; path=/; HttpOnly; SameSite=Stric; Secure`,
+        `access_token=${response.data.access_token}; path=/; HttpOnly; ; SameSite=None; Secure`,
       ],
       [
         "Set-Cookie",
-        `refresh_token=${response.data.refresh_token}; path=/; HttpOnly; SameSite=Stric; Secure`,
+        `refresh_token=${response.data.refresh_token}; path=/; HttpOnly; ; SameSite=None; Secure`,
       ],
     ];
   } catch (error) {
